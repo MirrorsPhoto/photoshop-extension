@@ -15,7 +15,7 @@
 	
 	Once this extension is installed, "Ps Play" can be applied from "Window" menu>"Extension" submenu > "Ps Play".]]>
 	</Abstract>	<ExtensionList>
-		<Extension Id="Mirrors.extension1" Version="1.2.0" />
+		<Extension Id="Mirrors.panel" Version="1.2.0" />
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
@@ -31,7 +31,7 @@
 		</RequiredRuntimeList>
 	</ExecutionEnvironment>
 	<DispatchInfoList>
-		<Extension Id="Mirrors.extension1">
+		<Extension Id="Mirrors.panel">
 			<DispatchInfo >
 				<Resources>
 				<MainPath>./index.html</MainPath>
