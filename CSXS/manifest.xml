@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ExtensionManifest Version="5.0" ExtensionBundleId="Mirrors" ExtensionBundleVersion="1.2.0"
+		ExtensionBundleName="Mirrors" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Author>
+		<![CDATA[腾讯ISUX]]>
+	</Author>	<Contact mailto="isux@qq.com"/>	<Abstract href="http://isux.tencent.com/app/psplay">
+		<![CDATA[Ps Play 通过 Wi-Fi，实时在终端设备上预览电脑上 Photoshop 的设计稿，可同步调试及截图保存到移动终端，并可以通过QQ、微信、Email等工具即时分享。是腾讯ISUX 首个独立策划、设计及研发的跨终端应用产品。您可以通过扫描此面板上的二维码，快速连接至 Photoshop。
+	
+	安装成功后，Ps Play 面板可以在“窗口” > “扩展” 菜单中找到。
+	
+	--------------------------------------------------------
+	
+	Ps Play helps to preview the Photoshop action effects on real-time through the Wi-Fi, at the same time you can also take screenshots to record every design process or to share it to friends by QQ, WeChat and Email. Ps Play is the first multi-platform app which was designed and developed by Tencent ISUX independently. 
+	
+	Once this extension is installed, "Ps Play" can be applied from "Window" menu>"Extension" submenu > "Ps Play".]]>
+	</Abstract>	<ExtensionList>
+		<Extension Id="Mirrors.extension1" Version="1.2.0" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="PHSP" Version="12.0" />
+			<Host Name="PHXS" Version="12.0" />
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="5.0" />
+
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+	<DispatchInfoList>
+		<Extension Id="Mirrors.extension1">
+			<DispatchInfo >
+				<Resources>
+				<MainPath>./index.html</MainPath>
+				<ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>Hello World</Menu>
+					<Geometry>
+						<Size>
+							<Height>300</Height>
+							<Width>300</Width>
+						</Size>
+                    <!--<MinSize>
+                            <Height>550</Height>
+                            <Width>400</Width>
+                        </MinSize>
+                        <MaxSize>
+                            <Height>550</Height>
+                            <Width>400</Width>
+                        </MaxSize>-->
+                        
+					</Geometry>
+					<Icons>
+						<Icon Type="Normal">./icons/iconNormal.png</Icon>
+						<Icon Type="RollOver">./icons/iconRollover.png</Icon>
+						<Icon Type="Disabled">./icons/iconDisabled.png</Icon>
+						<Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
+						<Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
+					</Icons>					
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
