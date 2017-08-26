@@ -4,8 +4,15 @@
     var csInterface = new CSInterface();
 
     $('#test').click(function () {
-        csInterface.evalScript('render(3, 4, 4)');
-    })
+        var selectedSize = $('#size option:selected');
+
+        var width = selectedSize.data('width');
+        var height = selectedSize.data('height');
+
+        var count = $('#count').val();
+        
+        csInterface.evalScript('render(' + width + ', ' + height + ', ' + count + ')');
+    });
 
 }());
     
