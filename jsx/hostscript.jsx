@@ -6,7 +6,7 @@ function render(width, height, count) {
         return false;
     }
 
-    if (activeDocument.height.value.toFixed(2) != height || activeDocument.width.value.toFixed(2) != width) {
+    if (((activeDocument.height.value.toFixed(2) != height) && (Math.abs(activeDocument.height.value.toFixed(2) - height) > 0.05)) || ((activeDocument.width.value.toFixed(2) != width) && (Math.abs(activeDocument.width.value.toFixed(2) - width) > 0.05))) {
         alert('Сначала нужно откадрировать фотографию');
         return false;
     }
