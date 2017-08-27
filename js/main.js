@@ -35,5 +35,34 @@ $('#test').click(function () {
 
     var count = $('#count').val();
 
-    csInterface.evalScript('render(' + width + ', ' + height + ', ' + count + ')');
+    var price;
+
+    // csInterface.evalScript('render(' + width + ', ' + height + ', ' + count + ')');
+
+    if (navigator.onLine) {
+        $.get({
+            url: 'http://mirrors.local/photo/price',
+            data: {
+                width: width,
+                height: height,
+                count: count
+            },
+            success: function (data) {
+                intPrice = data.response
+
+                $(".error").hide()
+                $('#price').show();
+                $('#price').find('span').text(intPrice)
+            },
+            error: function (e) {
+                
+                $('#price').hide()
+
+                $('.error').text(e.responseJSON.message);
+                $('.error').show()
+            }
+        })
+    }
+
+
 });
