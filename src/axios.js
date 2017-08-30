@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const instanceAxios = Axios.create({
-    baseURL: 'http://mirrors.local'
+    baseURL: 'http://api.jonkofee.ru'
 });
 
 instanceAxios.interceptors.request.use(
