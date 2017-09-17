@@ -9,7 +9,7 @@
             <input id="count" v-model="photoParams.count" type="number" min="1"/>
         </div>
 
-        <p v-if="price">Цена: {{ price | ruble }}</p>
+        <button @click="render()">Go</button>
 
         <p>
             <span v-for="message in errorMessages" :key="message">{{ message }}<br></span>
@@ -30,6 +30,9 @@
             }
         },
         methods: {
+            render() {
+                (new CSInterface).evalScript('render(' + this.photoParams.size.width + ', ' + this.photoParams.size.height + ', ' + this.photoParams.count + ')');
+            },
             logOut() {
                 localStorage.removeItem('token');
                 this.$router.push('/login');
