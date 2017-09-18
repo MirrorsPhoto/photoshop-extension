@@ -11,7 +11,7 @@ function isCrop(width, height) {
 }
 
 function isFit(width, height, count) {
-    return (layerWidth * layerHeight) > ((count + 0.3) * width * height);
+    return (layerWidth * layerHeight) > (count * width * height);
 }
 
 
@@ -297,7 +297,7 @@ function render(width, height, count) {
     }
 
     if (!isFit(width, height, count)) {
-        alert(count + " фотографии " + width + "х" + height + " не вмещаются на холст " + layerHeight + "х" + layerWidth);
+        alert(count + " фотографии " + width + "х" + height + " не вмещаются на холст " + layerWidth + "х" + layerHeight);
         return false;
     }
 
