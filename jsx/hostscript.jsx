@@ -11,7 +11,7 @@ function isCrop(width, height) {
 }
 
 function isFit(width, height, count) {
-    return (layerWidth * layerHeight) > ((count + 0.5) * width * height);
+    return (layerWidth * layerHeight) > ((count + 0.3) * width * height);
 }
 
 
