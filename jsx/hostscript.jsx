@@ -79,6 +79,69 @@ function addStroke() {
     app.executeAction( idsetd, desc22, DialogModes.NO );
 }
 
+function addLogo() {
+    var idsetd = charIDToTypeID( "setd" );
+    var desc131 = new ActionDescriptor();
+    var idnull = charIDToTypeID( "null" );
+    var ref68 = new ActionReference();
+    var idPrpr = charIDToTypeID( "Prpr" );
+    var idLefx = charIDToTypeID( "Lefx" );
+    ref68.putProperty( idPrpr, idLefx );
+    var idLyr = charIDToTypeID( "Lyr " );
+    var idOrdn = charIDToTypeID( "Ordn" );
+    var idTrgt = charIDToTypeID( "Trgt" );
+    ref68.putEnumerated( idLyr, idOrdn, idTrgt );
+    desc131.putReference( idnull, ref68 );
+    var idT = charIDToTypeID( "T   " );
+    var desc132 = new ActionDescriptor();
+    var idScl = charIDToTypeID( "Scl " );
+    var idPrc = charIDToTypeID( "#Prc" );
+    desc132.putUnitDouble( idScl, idPrc, 2497.666677 );
+    var idpatternFill = stringIDToTypeID( "patternFill" );
+    var desc133 = new ActionDescriptor();
+    var idenab = charIDToTypeID( "enab" );
+    desc133.putBoolean( idenab, true );
+    var idpresent = stringIDToTypeID( "present" );
+    desc133.putBoolean( idpresent, true );
+    var idshowInDialog = stringIDToTypeID( "showInDialog" );
+    desc133.putBoolean( idshowInDialog, true );
+    var idMd = charIDToTypeID( "Md  " );
+    var idBlnM = charIDToTypeID( "BlnM" );
+    var idNrml = charIDToTypeID( "Nrml" );
+    desc133.putEnumerated( idMd, idBlnM, idNrml );
+    var idOpct = charIDToTypeID( "Opct" );
+    var idPrc = charIDToTypeID( "#Prc" );
+    desc133.putUnitDouble( idOpct, idPrc, 100.000000 );
+    var idPtrn = charIDToTypeID( "Ptrn" );
+    var desc134 = new ActionDescriptor();
+    var idNm = charIDToTypeID( "Nm  " );
+    desc134.putString( idNm, """Mirror's Photo""" );
+    var idIdnt = charIDToTypeID( "Idnt" );
+    desc134.putString( idIdnt, """f5b21870-c6e8-117a-984c-916c37fd56c3""" );
+    var idPtrn = charIDToTypeID( "Ptrn" );
+    desc133.putObject( idPtrn, idPtrn, desc134 );
+    var idScl = charIDToTypeID( "Scl " );
+    var idPrc = charIDToTypeID( "#Prc" );
+    desc133.putUnitDouble( idScl, idPrc, 90.000000 );
+    var idAlgn = charIDToTypeID( "Algn" );
+    desc133.putBoolean( idAlgn, true );
+    var idphase = stringIDToTypeID( "phase" );
+    var desc135 = new ActionDescriptor();
+    var idHrzn = charIDToTypeID( "Hrzn" );
+    desc135.putDouble( idHrzn, 0.000000 );
+    var idVrtc = charIDToTypeID( "Vrtc" );
+    desc135.putDouble( idVrtc, 0.000000 );
+    var idPnt = charIDToTypeID( "Pnt " );
+    desc133.putObject( idphase, idPnt, desc135 );
+    var idpatternFill = stringIDToTypeID( "patternFill" );
+    desc132.putObject( idpatternFill, idpatternFill, desc133 );
+    var idLefx = charIDToTypeID( "Lefx" );
+    desc131.putObject( idT, idLefx, desc132 );
+    executeAction( idsetd, desc131, DialogModes.NO );
+}
+
+
+
 function render3x4x6(width, height)
 {
     var layer = activeDocument.activeLayer;
@@ -158,16 +221,21 @@ function render(width, height, count) {
     activeDocument.resizeCanvas(layerWidth, layerHeight)
 
     eval('render' + width + 'x' + height + 'x' + count + '(' + width + ', ' + height + ')');
-    var str='';
+
     for( var i = 0; i < activeDocument.artLayers.length; i++) {
         var layer = app.activeDocument.artLayers[i];
 
-        if (layer.kind == LayerKind.NORMAL && !layer.isBackgroundLayer) {
-            app.activeDocument.activeLayer = layer
+        app.activeDocument.activeLayer = layer
 
+        if (layer.kind == LayerKind.NORMAL && !layer.isBackgroundLayer) {
             addStroke ()
         }
     }
+
+    app.activeDocument.activeLayer.isBackgroundLayer = false
+    app.activeDocument.activeLayer.name = 'Фон'
+
+    addLogo()
 
     return true;
 }
