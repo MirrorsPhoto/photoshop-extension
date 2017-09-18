@@ -259,6 +259,20 @@ function render3x4x4(width, height) {
     addDatetime (border, border + width + offset + width + 0.25 + offset)
 }
 
+function render4x6x2(width, height) {
+    var layer = activeDocument.activeLayer;
+
+    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(width + offset)
+
+    addDatetime (border, border + height + 0.25 + offset)
+}
+
 function open(path) {
     var fileRef = new File(path)
 
