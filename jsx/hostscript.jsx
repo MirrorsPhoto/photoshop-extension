@@ -335,5 +335,7 @@ function render(width, height, count) {
 
     addLogo()
 
+    activeDocument.mergeVisibleLayers()
+
     return true;
 }
