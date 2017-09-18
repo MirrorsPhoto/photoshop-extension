@@ -140,7 +140,57 @@ function addLogo() {
     executeAction( idsetd, desc131, DialogModes.NO );
 }
 
+function addDatetime(width, height) {
+    var docRef = app.activeDocument;
 
+    var s = "Date Time"
+
+    var now = new Date();
+
+    var year = now.getFullYear();
+    var day = now.getDate();
+    var month = now.getMonth() + 1;
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    if(day < 10){day = "0" + day}
+    if(month < 10){month= "0" + month}
+    if(hours < 10){hours= "0" + hours}
+    if(minutes < 10){minutes= "0" + minutes}
+    if(seconds < 10){seconds= "0" + seconds}
+
+    var dd = ".";
+    var td = ":";
+
+    var dt = day + dd +
+        month + dd +
+        year + 'г. ' +
+        hours + td +
+        minutes;
+
+    var textColor = new SolidColor;
+    textColor.rgb.red = 0;
+    textColor.rgb.green = 0;
+    textColor.rgb.blue = 0;
+
+
+    var newTextLayer = docRef.artLayers.add();
+    newTextLayer.kind = LayerKind.TEXT;
+
+    newTextLayer.textItem.position = [width, height];
+
+    newTextLayer.textItem.size = 10;
+    newTextLayer.textItem.color = textColor;
+
+    newTextLayer.textItem.font = "SFUIText-Light";
+
+    newTextLayer.name = s;
+
+
+    newTextLayer.textItem.contents = dt;
+
+}
 
 function render3x4x6(width, height)
 {
@@ -177,6 +227,8 @@ function render3x4x6(width, height)
     newLayer.name = 'Фото 6';
 
     newLayer.translate(-(width + offset))
+
+    addDatetime (border, border + height + offset + height + 0.25 + offset)
 }
 
 function open(path) {
