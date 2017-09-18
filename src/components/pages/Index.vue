@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         render() {
-            // (new CSInterface).evalScript('render(' + this.photoParams.size.width + ', ' + this.photoParams.size.height + ', ' + this.photoParams.count + ')');
+            (new CSInterface).evalScript('render(' + this.photoParams.size.width + ', ' + this.photoParams.size.height + ', ' + this.photoParams.count + ')');
         },
         logOut() {
             localStorage.removeItem('token');
