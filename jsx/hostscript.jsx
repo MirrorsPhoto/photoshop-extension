@@ -231,6 +231,23 @@ function render3x4x6(width, height)
     addDatetime (border, border + height + offset + height + 0.25 + offset)
 }
 
+function render36x46x2(width, height)
+{
+    var layer = activeDocument.activeLayer;
+
+    layer.rotate(90);
+
+    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(0, width + offset)
+
+    addDatetime (border, border + width + offset + width + 0.25 + offset)
+}
+
 function render36x46x4(width, height)
 {
     var layer = activeDocument.activeLayer;
