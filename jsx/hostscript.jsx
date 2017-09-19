@@ -368,6 +368,8 @@ function render9x12x1(width, height) {
     addDatetime ((layerWidth - width) / 2, (layerHeight - height) / 2 + height + 0.25 + offset)
 }
 
+function render10x15x1(width, height) {}
+
 function open(path) {
     var fileRef = new File(path)
 
