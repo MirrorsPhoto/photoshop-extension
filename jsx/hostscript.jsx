@@ -349,6 +349,21 @@ function render4x6x2(width, height) {
     addDatetime (border, border + height + 0.25 + offset)
 }
 
+function render5x5x2(width, height)
+{
+    var layer = activeDocument.activeLayer;
+
+    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(0, width + offset)
+
+    addDatetime (border, border + height + offset + height + 0.25 + offset)
+}
+
 function render9x12x1(width, height) {
     addDatetime ((layerWidth - width) / 2, (layerHeight - height) / 2 + height + 0.25 + offset)
 }
