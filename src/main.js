@@ -7,10 +7,6 @@ import axios from './axios';
 
 const socket = new ReconnectingWebSocket("ws://localhost:8081", undefined, { maxReconnectionDelay: 4000 });
 
-socket.onopen = function() {
-  console.log("Соединение установлено.");
-};
-
 Vue.prototype.$socket = socket;
 
 Vue.prototype.$http = axios;
