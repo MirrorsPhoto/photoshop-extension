@@ -47,6 +47,12 @@ export default {
     methods: {
         render() {
             (new CSInterface).evalScript('render(' + this.photoParams.size.width + ', ' + this.photoParams.size.height + ', ' + this.photoParams.count + ')');
+
+            this.$socket.send(JSON.stringify({
+              height: this.photoParams.size.height,
+              width: this.photoParams.size.width,
+              count: this.photoParams.count
+            }))
         },
         logOut() {
             localStorage.removeItem('token');
