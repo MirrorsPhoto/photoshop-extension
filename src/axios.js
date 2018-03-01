@@ -1,29 +1,28 @@
 import Axios from 'axios';
+const baseURL = 'http://api.mirrors.local:420';
 
-const instanceAxios = Axios.create({
-    baseURL: 'http://api.jonkofee.ru'
-});
+export default (vm) => {
 
-instanceAxios.interceptors.request.use(
-    response => {
-        const token = localStorage.getItem('token');
-        if (token) response.headers['Authorization'] = 'Bearer ' + token;
-        return response;
-    },
-    error => Promise.reject(error)
-);
-
-instanceAxios.interceptors.response.use(
-    response => response,
-    error => {
-        if (error.request.status === 401) {
-            if (localStorage.getItem('token')) localStorage.removeItem('token');
-            vm.$router.push('/login');
-        }
-        return Promise.reject(error);
+  function addTokenToRequest(response) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      response.headers['Authorization'] = 'Bearer ' + token;
     }
-);
+    return response;
+  };
 
+  function exitIfNoValid(error) {
+    if (error.request.status === 401) {
+      const app = vm.$children[0];
+      app.logout();
+    }
+    return Promise.reject(error);
+  }
 
-export default instanceAxios;
+  const instanceAxios = Axios.create({ baseURL });
 
+  instanceAxios.interceptors.request.use(addTokenToRequest, Promise.reject);
+  instanceAxios.interceptors.response.use(r => r, exitIfNoValid);
+
+  return instanceAxios;
+};
