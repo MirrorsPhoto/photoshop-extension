@@ -13,7 +13,7 @@
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
-			<Host Name="PHSP" Version="17.0" />
+			<Host Name="PHSP" Version="18.0" />
 			<Host Name="PHXS" Version="17.0" />
 		</HostList>
 		<LocaleList>
