@@ -73,8 +73,11 @@ export default {
       const [width, height] = this.photoParams.size.split('x').map(Number);
       const { count } = this.photoParams;
 
-      (new CSInterface).evalScript(`render(${width}, ${height}, ${count})`);
-      this.$socket.send(JSON.stringify({ width, height, count }));
+      (new CSInterface).evalScript(`render(${width}, ${height}, ${count})`, result => {
+        if (result !== 'false') {
+            this.$socket.send(JSON.stringify({ width, height, count }));
+        }
+      });
     },
     getSizes() {
       this.$http.get('photo/size')
