@@ -2,7 +2,7 @@
 var layerWidth = 10,
     layerHeight = 15,
     offset = 0.1,
-    border = 0.4
+    border = 0.2
 
 function isCrop(width, height) {
     var activeDocument = app.activeDocument;
@@ -331,18 +331,21 @@ function render3x4x4(width, height) {
   addDatetime (border, border + height + offset + height + 0.25 + offset)
 }
 
-function render4x6x2(width, height) {
+function render4x6x2(width, height)
+{
     var layer = activeDocument.activeLayer;
 
-    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
+    layer.rotate(90);
+
+    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
 
     var newLayer = layer.duplicate();
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(width + offset)
+    newLayer.translate(0, width + offset)
 
-    addDatetime (border, border + height + 0.25 + offset)
+    addDatetime (border, border + width + offset + width + 0.25 + offset)
 }
 
 function render5x5x2(width, height)
