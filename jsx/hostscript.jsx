@@ -2,7 +2,7 @@
 var layerWidth = 10,
     layerHeight = 15,
     offset = 0.1,
-    border = 0.3
+    border = 0.4
 
 function isCrop(width, height) {
     var activeDocument = app.activeDocument;
@@ -122,7 +122,7 @@ function addLogo() {
     desc133.putObject( idPtrn, idPtrn, desc134 );
     var idScl = charIDToTypeID( "Scl " );
     var idPrc = charIDToTypeID( "#Prc" );
-    desc133.putUnitDouble( idScl, idPrc, 30.000000 );
+    desc133.putUnitDouble( idScl, idPrc, 60.000000 );
     var idAlgn = charIDToTypeID( "Algn" );
     desc133.putBoolean( idAlgn, true );
     var idphase = stringIDToTypeID( "phase" );
@@ -235,29 +235,27 @@ function render25x3x4(width, height)
 {
     var layer = activeDocument.activeLayer;
 
-    layer.rotate(90);
-
-    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
 
     var newLayer = layer.duplicate();
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(height + offset)
+    newLayer.translate(width + offset)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 3';
 
-    newLayer.translate(0, width + offset)
+    newLayer.translate(0, height + offset)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 4';
 
-    newLayer.translate(-(height + offset))
+    newLayer.translate(-(width + offset))
 
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+    addDatetime (border, border + height + offset + height + 0.25 + offset)
 }
 
 function render36x46x2(width, height)
