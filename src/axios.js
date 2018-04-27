@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 const instanceAxios = Axios.create({
-    baseURL: 'http://api.jonkofee.ru'
+    baseURL: 'http://api.mirrors-photo.ru/'
 });
 
 instanceAxios.interceptors.request.use(
@@ -26,4 +26,3 @@ instanceAxios.interceptors.response.use(
 
 
 export default instanceAxios;
-

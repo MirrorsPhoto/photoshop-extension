@@ -308,31 +308,29 @@ function render36x46x4(width, height)
 
 
 function render3x4x4(width, height) {
-    var layer = activeDocument.activeLayer;
+  var layer = activeDocument.activeLayer;
 
-    layer.rotate(90);
+  layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
 
-    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+  var newLayer = layer.duplicate();
 
-    var newLayer = layer.duplicate();
+  newLayer.name = 'Фото 2';
 
-    newLayer.name = 'Фото 2';
+  newLayer.translate(width + offset)
 
-    newLayer.translate(height + offset)
+  newLayer = newLayer.duplicate();
 
-    newLayer = newLayer.duplicate();
+  newLayer.name = 'Фото 3';
 
-    newLayer.name = 'Фото 3';
+  newLayer.translate(0, height + offset)
 
-    newLayer.translate(0, width + offset)
+  newLayer = newLayer.duplicate();
 
-    newLayer = newLayer.duplicate();
+  newLayer.name = 'Фото 4';
 
-    newLayer.name = 'Фото 4';
+  newLayer.translate(-(width + offset))
 
-    newLayer.translate(-(height + offset))
-
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+  addDatetime (border, border + height + offset + height + 0.25 + offset)
 }
 
 function render4x6x2(width, height) {

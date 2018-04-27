@@ -15,6 +15,10 @@
 		<HostList>
 			<Host Name="PHSP" Version="17.0" />
 			<Host Name="PHXS" Version="17.0" />
+			<Host Name="PHSP" Version="18.0" />
+			<Host Name="PHXS" Version="18.0" />
+			<Host Name="PHSP" Version="19.0" />
+			<Host Name="PHXS" Version="19.0" />
 		</HostList>
 		<LocaleList>
 			<Locale Code="All" />
@@ -48,7 +52,7 @@
 						<Icon Type="Disabled">./icons/iconDisabled.png</Icon>
 						<Icon Type="DarkNormal">./icons/iconDarkNormal.png</Icon>
 						<Icon Type="DarkRollOver">./icons/iconDarkRollover.png</Icon>
-					</Icons>					
+					</Icons>
 				</UI>
 			</DispatchInfo>
 		</Extension>
