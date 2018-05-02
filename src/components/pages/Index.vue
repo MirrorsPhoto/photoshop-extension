@@ -81,7 +81,7 @@ export default {
     },
     getSizes() {
       this.$http.get('photo/size')
-        .then(res => this.sizesData = res.data.response)
+        .then(res => this.sizesData = res.data.response.sort((a, b) => a.width - b.width))
         .catch(error => this.errorMessages.push(error));
     }
   },
