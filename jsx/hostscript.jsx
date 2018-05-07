@@ -140,7 +140,7 @@ function addLogo() {
     executeAction( idsetd, desc131, DialogModes.NO );
 }
 
-function addDatetime(width, height) {
+function addDatetime(width, height, position) {
     var docRef = app.activeDocument;
 
     var s = "Date Time"
@@ -179,6 +179,10 @@ function addDatetime(width, height) {
     newTextLayer.kind = LayerKind.TEXT;
 
     newTextLayer.textItem.position = [width, height];
+
+    if (position == 'right') {
+      newTextLayer.rotate(90);
+    }
 
     newTextLayer.textItem.size = 10;
     newTextLayer.textItem.color = textColor;
@@ -318,7 +322,7 @@ function render35x45x4(width, height)
 
     newLayer.translate(-(height + offset))
 
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+    addDatetime(border + height + offset + height + 0.1 + offset, border + 0.16, 'right')
 }
 
 function render36x46x4(width, height)
@@ -347,7 +351,7 @@ function render36x46x4(width, height)
 
     newLayer.translate(-(height + offset))
 
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+    addDatetime(border + height + offset + height + 0.1 + offset, border + 0.16, 'right')
 }
 
 
