@@ -232,7 +232,7 @@ function render3x4x6(width, height)
 
     newLayer.translate(-(width + offset))
 
-    addDatetime (border, border + height + offset + height + 0.25 + offset)
+    addDatetime (border + width + offset + width + offset + width + offset, border + 0.36, 'right')
 }
 
 function render25x3x4(width, height)
