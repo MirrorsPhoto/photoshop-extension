@@ -192,7 +192,7 @@ export default {
       this.errorMessages.splice(0);
 
       const [width, height] = this.size.split('x').map(Number);
-      const { count } = this;
+      const count = Number(this.count);
 
       (new CSInterface).evalScript(`render(${width}, ${height}, ${count})`, result => {
         if (result !== 'false') {
