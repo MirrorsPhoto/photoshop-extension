@@ -202,7 +202,7 @@ export default {
     },
     getSizes() {
       this.$http.get('photo/size')
-        .then(res => this.sizesData = res.data.response.sort((a, b) => a.width - b.width))
+        .then(res => this.photoData = res.data.response.sort((a, b) => a.width - b.width))
     },
     sizeToString(size) {
       return size.width + 'x' + size.height
