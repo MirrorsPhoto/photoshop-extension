@@ -102,7 +102,7 @@ export default {
   border: 0
   outline: 0
   cursor: pointer
-  transition: all .3 ease
+  transition: all .3s ease
 
   &:hover
     background: darken($primary-color, 10%)
