@@ -2,7 +2,8 @@
 var layerWidth = 10,
     layerHeight = 15,
     offset = 0.1,
-    border = 0.2
+    border = 0.2,
+    isAddDate = true
 
 function isCrop(width, height) {
     var activeDocument = app.activeDocument;
@@ -141,6 +142,10 @@ function addLogo() {
 }
 
 function addDatetime(width, height, position) {
+    if (!isAddDate) {
+      return;
+    }
+
     var docRef = app.activeDocument;
 
     var s = "Date Time"
@@ -425,7 +430,8 @@ function open(path) {
     app.open( fileRef)
 }
 
-function render(width, height, count) {
+function render(width, height, count, isBorder, isLogo, isDate) {
+    isAddDate = isDate
     try {
         var activeDocument = app.activeDocument;
     } catch (e) {
@@ -462,7 +468,8 @@ function render(width, height, count) {
 
     eval('render' + String(width).replace ('.', '') + 'x' + String(height).replace ('.', '') + 'x' + count + '(' + width + ', ' + height + ')');
 
-    for( var i = 0; i < activeDocument.artLayers.length; i++) {
+    if (isBorder) {
+      for( var i = 0; i < activeDocument.artLayers.length; i++) {
         var layer = app.activeDocument.artLayers[i];
 
         app.activeDocument.activeLayer = layer
@@ -470,12 +477,16 @@ function render(width, height, count) {
         if (layer.kind == LayerKind.NORMAL && !layer.isBackgroundLayer) {
             addStroke ()
         }
+      }
     }
+    
 
     app.activeDocument.activeLayer.isBackgroundLayer = false
     app.activeDocument.activeLayer.name = 'Фон'
 
-    addLogo()
+    if (isLogo) {
+      addLogo()
+    }
 
     activeDocument.mergeVisibleLayers()
 
