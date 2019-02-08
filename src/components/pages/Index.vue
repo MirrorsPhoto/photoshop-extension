@@ -12,6 +12,19 @@
       :options="counts"
     ></dropdown>
 
+    <checkbox
+      label="Рамка"
+      v-model="options.isBorder"
+    />
+   <checkbox
+      label="Логотип"
+      v-model="options.isLogo"
+    />
+   <checkbox
+      label="Дата"
+      v-model="options.isDate"
+    />
+
     <button
       class="render-btn"
       @click="render"
@@ -30,12 +43,18 @@
 </template>
 <script>
 import dropdown from '../UI/dropdown.vue';
+import checkbox from '../UI/checkbox.vue';
 
 export default {
-  components: { dropdown },
+  components: { dropdown, checkbox },
 
   data() {
     return {
+      options: {
+        isBorder: true,
+        isLogo: true,
+        isDate: true
+      },
       photoData: [
         {
           "width": 2.5,
@@ -193,8 +212,10 @@ export default {
 
       const [width, height] = this.size.split('x').map(Number);
       const count = Number(this.count);
-
-      (new CSInterface).evalScript(`render(${width}, ${height}, ${count})`, result => {
+      const { isBorder, isLogo, isDate } = this.options
+      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ')
+        
+      new CSInterface.evalScript(`render(${argsStr})`, result => {
         if (result !== 'false') {
             this.$socket.send(JSON.stringify({ width, height, count }));
         }
