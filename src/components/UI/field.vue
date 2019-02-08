@@ -84,6 +84,7 @@ export default {
       if (numbersOnly) {
         value = value.replace(/[^0-9]/g, '')
       }
+      value = value.replace(/[.]/g, '')
       this.$refs.input.value = value
       this.$emit('input', value)
     },

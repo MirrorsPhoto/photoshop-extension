@@ -2,7 +2,7 @@
 var layerWidth = 10,
     layerHeight = 15,
     offset = 0.1,
-    border = 0.3
+    border = 0.2
 
 function isCrop(width, height) {
     var activeDocument = app.activeDocument;
@@ -122,7 +122,7 @@ function addLogo() {
     desc133.putObject( idPtrn, idPtrn, desc134 );
     var idScl = charIDToTypeID( "Scl " );
     var idPrc = charIDToTypeID( "#Prc" );
-    desc133.putUnitDouble( idScl, idPrc, 90.000000 );
+    desc133.putUnitDouble( idScl, idPrc, 60.000000 );
     var idAlgn = charIDToTypeID( "Algn" );
     desc133.putBoolean( idAlgn, true );
     var idphase = stringIDToTypeID( "phase" );
@@ -140,7 +140,7 @@ function addLogo() {
     executeAction( idsetd, desc131, DialogModes.NO );
 }
 
-function addDatetime(width, height) {
+function addDatetime(width, height, position) {
     var docRef = app.activeDocument;
 
     var s = "Date Time"
@@ -179,6 +179,10 @@ function addDatetime(width, height) {
     newTextLayer.kind = LayerKind.TEXT;
 
     newTextLayer.textItem.position = [width, height];
+
+    if (position == 'right') {
+      newTextLayer.rotate(90);
+    }
 
     newTextLayer.textItem.size = 10;
     newTextLayer.textItem.color = textColor;
@@ -228,10 +232,71 @@ function render3x4x6(width, height)
 
     newLayer.translate(-(width + offset))
 
-    addDatetime (border, border + height + offset + height + 0.25 + offset)
+    addDatetime (border + width + offset + width + offset + width + offset, border + 0.36, 'right')
 }
 
 function render25x3x4(width, height)
+{
+    var layer = activeDocument.activeLayer;
+
+    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(width + offset)
+
+    newLayer = newLayer.duplicate();
+
+    newLayer.name = 'Фото 3';
+
+    newLayer.translate(0, height + offset)
+
+    newLayer = newLayer.duplicate();
+
+    newLayer.name = 'Фото 4';
+
+    newLayer.translate(-(width + offset))
+
+    addDatetime (border, border + height + offset + height + 0.25 + offset)
+}
+
+function render35x45x2(width, height)
+{
+    var layer = activeDocument.activeLayer;
+
+    layer.rotate(90);
+
+    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(0, width + offset)
+
+    addDatetime (border, border + width + offset + width + 0.25 + offset)
+}
+
+function render36x46x2(width, height)
+{
+    var layer = activeDocument.activeLayer;
+
+    layer.rotate(90);
+
+    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+
+    var newLayer = layer.duplicate();
+
+    newLayer.name = 'Фото 2';
+
+    newLayer.translate(0, width + offset)
+
+    addDatetime (border, border + width + offset + width + 0.25 + offset)
+}
+
+function render35x45x4(width, height)
 {
     var layer = activeDocument.activeLayer;
 
@@ -257,24 +322,7 @@ function render25x3x4(width, height)
 
     newLayer.translate(-(height + offset))
 
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
-}
-
-function render36x46x2(width, height)
-{
-    var layer = activeDocument.activeLayer;
-
-    layer.rotate(90);
-
-    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
-
-    var newLayer = layer.duplicate();
-
-    newLayer.name = 'Фото 2';
-
-    newLayer.translate(0, width + offset)
-
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+    addDatetime(border + height + offset + height + offset, border + 0.36, 'right')
 }
 
 function render36x46x4(width, height)
@@ -303,11 +351,38 @@ function render36x46x4(width, height)
 
     newLayer.translate(-(height + offset))
 
-    addDatetime (border, border + width + offset + width + 0.25 + offset)
+    addDatetime(border + height + offset + height + offset, border + 0.36, 'right')
 }
 
 
 function render3x4x4(width, height) {
+  var layer = activeDocument.activeLayer;
+
+  layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
+
+  var newLayer = layer.duplicate();
+
+  newLayer.name = 'Фото 2';
+
+  newLayer.translate(width + offset)
+
+  newLayer = newLayer.duplicate();
+
+  newLayer.name = 'Фото 3';
+
+  newLayer.translate(0, height + offset)
+
+  newLayer = newLayer.duplicate();
+
+  newLayer.name = 'Фото 4';
+
+  newLayer.translate(-(width + offset))
+
+  addDatetime (border, border + height + offset + height + 0.25 + offset)
+}
+
+function render4x6x2(width, height)
+{
     var layer = activeDocument.activeLayer;
 
     layer.rotate(90);
@@ -318,35 +393,9 @@ function render3x4x4(width, height) {
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(height + offset)
-
-    newLayer = newLayer.duplicate();
-
-    newLayer.name = 'Фото 3';
-
     newLayer.translate(0, width + offset)
 
-    newLayer = newLayer.duplicate();
-
-    newLayer.name = 'Фото 4';
-
-    newLayer.translate(-(height + offset))
-
     addDatetime (border, border + width + offset + width + 0.25 + offset)
-}
-
-function render4x6x2(width, height) {
-    var layer = activeDocument.activeLayer;
-
-    layer.translate((-(layerWidth - width) / 2) + border, (-(layerHeight - height) / 2) + border)
-
-    var newLayer = layer.duplicate();
-
-    newLayer.name = 'Фото 2';
-
-    newLayer.translate(width + offset)
-
-    addDatetime (border, border + height + 0.25 + offset)
 }
 
 function render5x5x2(width, height)

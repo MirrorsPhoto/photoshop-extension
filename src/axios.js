@@ -1,5 +1,5 @@
 import Axios from 'axios';
-const baseURL = 'http://api.mirrors.local:420';
+const baseURL = 'http://api.mirrors-photo.ru';
 
 export default (vm) => {
 
