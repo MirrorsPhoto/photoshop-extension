@@ -212,10 +212,10 @@ export default {
 
       const [width, height] = this.size.split('x').map(Number);
       const count = Number(this.count);
-      const { isBorder, isLogo, isDate } = this.options
-      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ')
-        
-      new CSInterface.evalScript(`render(${argsStr})`, result => {
+      const { isBorder, isLogo, isDate } = this.options;
+      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ');
+
+      new CSInterface().evalScript(`render(${argsStr})`, result => {
         if (result !== 'false') {
             this.$socket.send(JSON.stringify({ width, height, count }));
         }
