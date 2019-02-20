@@ -342,7 +342,7 @@ function render36x46x4(width, height)
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(height + offset)
+    newLayer.translate(height + offset + 0.4)
 
     newLayer = newLayer.duplicate();
 
@@ -354,7 +354,7 @@ function render36x46x4(width, height)
 
     newLayer.name = 'Фото 4';
 
-    newLayer.translate(-(height + offset))
+    newLayer.translate(-(height + offset) - 0.4)
 
     addDatetime(border + height + offset + height + offset, border + 0.36, 'right')
 }
