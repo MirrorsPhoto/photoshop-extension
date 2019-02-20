@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ExtensionManifest Version="5.0" ExtensionBundleId="Mirrors" ExtensionBundleVersion="1.0.0" ExtensionBundleName="Mirrors" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="5.0" ExtensionBundleId="MirrorsPhoto" ExtensionBundleVersion="1.0.0" ExtensionBundleName="MirrorsPhoto" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<Author>
 		<![CDATA[jonkofee]]>
 	</Author>
@@ -9,7 +9,7 @@
 		<![CDATA[Телеграм]]>
 	</Abstract>
 	<ExtensionList>
-		<Extension Id="Mirrors.panel"/>
+		<Extension Id="MirrorsPhoto.panel"/>
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
@@ -28,7 +28,7 @@
 		</RequiredRuntimeList>
 	</ExecutionEnvironment>
 	<DispatchInfoList>
-		<Extension Id="Mirrors.panel">
+		<Extension Id="MirrorsPhoto.panel">
 			<DispatchInfo >
 				<Resources>
 				<MainPath>./index.html</MainPath>
