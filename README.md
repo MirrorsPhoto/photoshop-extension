@@ -53,5 +53,5 @@ ZXPSignCmd -sign <inputDir> <outputZxp> <p12> <p12Password> [options]
 
 **Example**
 ```
-./ZXPSignCmd -sign . test.zxp cert.p12 dl34op -tsa http://time.certum.pl/
+./ZXPSignCmd -sign ./build mirrors.zxp cert.p12 dl34op
 ```
