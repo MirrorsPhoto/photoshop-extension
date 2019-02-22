@@ -53,5 +53,5 @@ ZXPSignCmd -sign <inputDir> <outputZxp> <p12> <p12Password> [options]
 
 **Example**
 ```
-./ZXPSignCmd -sign ./build mirrors.zxp cert.p12 dl34op
+./ZXPSignCmd -sign ./dist mirrors.zxp cert.p12 dl34op
 ```

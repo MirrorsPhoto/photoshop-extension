@@ -144,7 +144,7 @@ export default {
     }
   },
   components: {
-    fieldInput: require('./field.vue')
+    fieldInput: () => import('./field.vue')
   }
 }
 </script>

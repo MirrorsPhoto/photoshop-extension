@@ -42,12 +42,11 @@
   </div>
 </template>
 <script>
-import dropdown from '../UI/dropdown.vue';
-import checkbox from '../UI/checkbox.vue';
-
 export default {
-  components: { dropdown, checkbox },
-
+  components: { 
+    dropdown: () => import('../UI/dropdown.vue'),
+    checkbox: () => import('../UI/checkbox.vue') 
+  },
   data() {
     return {
       options: {
@@ -215,11 +214,11 @@ export default {
       const { isBorder, isLogo, isDate } = this.options;
       const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ');
 
-      new CSInterface().evalScript(`render(${argsStr})`, result => {
-        if (result !== 'false') {
-            this.$socket.send(JSON.stringify({ width, height, count }));
-        }
-      });
+     new CSInterface().evalScript(`render(${argsStr})`, result => {
+       if (result !== 'false') {
+           this.$socket.send(JSON.stringify({ width, height, count }));
+       }
+     });
     },
     getSizes() {
       this.$http.get('photo/size')
