@@ -58,7 +58,7 @@ body
 
   & > *
     width: 350px
-    padding: 30px
+    padding: 20px 30px
     position: relative
     color: #fff
     background: transparent

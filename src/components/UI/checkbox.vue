@@ -3,9 +3,6 @@
     <input v-model="isChecked" type="checkbox" style="display: none" >
     <label>
       <span>
-        <svg width="12px" height="10px" viewbox="0 0 12 10">
-          <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-        </svg>
       </span>
       <span>{{ label }}</span>
     </label>
@@ -34,8 +31,8 @@
 
 <style lang="css" scoped>
   .checkbox {
-    height: 3.7em;
-    padding: 1em 0.5em;
+    height: 1em;
+    padding: 1em 0em;
     cursor: pointer;
   }
 
@@ -59,29 +56,13 @@
 
   label span:first-child {
     position: relative;
-    width: 1.8em;
-    height: 1.8em;
+    width: 1em;
+    height: 1em;
     border-radius: 5px;
     transform: scale(1);
     vertical-align: middle;
     border: 2px solid #8d8d8d;
     transition: all 0.2s ease;
-  }
-
-  label span:first-child svg {
-    position: absolute;
-    top: 9px;
-    left: 6px;
-    fill: none;
-    stroke: #fff;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 16px;
-    stroke-dashoffset: 16px;
-    transition: all 0.3s ease;
-    transition-delay: 0.1s;
-    transform: translate3d(0, 0, 0) scale(1.4);
   }
 
   label span:first-child:before {
@@ -96,17 +77,13 @@
   }
 
   label span:last-child {
-    padding-left: 1em;
+    padding-left: 0.5em;
   }
 
   input:checked + label span:first-child {
     background: #e74c3c;
     border-color: #e74c3c;
     animation: wave 0.4s ease;
-  }
-
-  input:checked + label span:first-child svg {
-    stroke-dashoffset: 0;
   }
 
   input:checked + label span:first-child:before {

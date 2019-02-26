@@ -12,18 +12,20 @@
       :options="counts"
     ></dropdown>
 
-    <checkbox
-      label="Рамка"
-      v-model="options.isBorder"
-    />
-   <checkbox
-      label="Логотип"
-      v-model="options.isLogo"
-    />
-   <checkbox
-      label="Дата"
-      v-model="options.isDate"
-    />
+    <div class="options">
+      <checkbox
+        label="Рамка"
+        v-model="options.isBorder"
+      />
+      <checkbox
+        label="Логотип"
+        v-model="options.isLogo"
+      />
+      <checkbox
+        label="Дата"
+        v-model="options.isDate"
+      />
+    </div>
 
     <button
       class="render-btn"
@@ -262,5 +264,8 @@ export default {
 
   &:hover
     color: $primary-color
+
+.options
+  margin-bottom: 30px
 
 </style>

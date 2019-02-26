@@ -114,7 +114,7 @@ export default {
 div
   display: inline-block
   height: 40px
-  margin-bottom: 20px
+  margin: 10px 0px
   line-height: 40px
   position: relative
   & > *
