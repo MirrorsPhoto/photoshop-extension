@@ -32,6 +32,11 @@
       @click="render"
     >Применить</button>
 
+    <button
+      class="render-btn"
+      @click="removeBackground"
+    >Убрать фон</button>
+
     <p>
       <span v-for="message in errorMessages" :key="message">{{ message }}<br></span>
     </p>
@@ -44,6 +49,8 @@
   </div>
 </template>
 <script>
+import Axios from 'axios'
+
 export default {
   components: { 
     dropdown: () => import('../UI/dropdown.vue'),
@@ -209,18 +216,18 @@ export default {
 
   methods: {
     render() {
-      this.errorMessages.splice(0);
+      this.errorMessages.splice(0)
 
-      const [width, height] = this.size.split('x').map(Number);
-      const count = Number(this.count);
-      const { isBorder, isLogo, isDate } = this.options;
-      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ');
+      const [width, height] = this.size.split('x').map(Number)
+      const count = Number(this.count)
+      const { isBorder, isLogo, isDate, isRemoveBackground } = this.options
+      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ')
 
-     new CSInterface().evalScript(`render(${argsStr})`, result => {
-       if (result !== 'false') {
-           this.$socket.send(JSON.stringify({ width, height, count }));
-       }
-     });
+      new CSInterface().evalScript(`render(${argsStr})`, result => {
+        if (result !== 'false') {
+          this.$socket.send(JSON.stringify({ width, height, count }))
+        }
+      })
     },
     getSizes() {
       this.$http.get('photo/size')
@@ -228,11 +235,37 @@ export default {
     },
     sizeToString(size) {
       return size.width + 'x' + size.height
+    },
+    removeBackground() {
+      new CSInterface().evalScript(`getDocumentSource()`, source => {
+        var imageData = eval(source).toString()
+
+        Axios({
+          method: 'post',
+          url: 'https://api.remove.bg/v1.0/removebg',
+          data: {
+            image_file_b64: cep.encoding.convertion.binary_to_b64(imageData)
+          },
+          headers: {
+            'X-Api-Key': 'cXk4C88k73yxG3aBXUHMsAnF',
+            'Accept': 'application/json'
+          }
+        })
+        .then(({ data }) => {
+            new CSInterface().evalScript(`getTempPath()`, tempPath => {
+              let path = `${tempPath}/${Date.now()}.png`
+              
+              window.cep.fs.writeFile(path, data.data.result_b64, cep.encoding.Base64)
+              
+              new CSInterface().evalScript(`replaceImage('${path}')`)
+            })
+        })
+      })
     }
   },
 
   created() {
-    this.getSizes();
+    this.getSizes()
   }
 }
 </script>

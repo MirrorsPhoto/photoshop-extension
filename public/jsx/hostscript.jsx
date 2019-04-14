@@ -492,3 +492,64 @@ function render(width, height, count, isBorder, isLogo, isDate) {
 
     return true;
 }
+
+function readBinaryFile(path) {
+    var file = File(path)
+    file.encoding = 'BINARY'
+    file.open('r')
+
+    var buffer = file.read()
+    file.close()
+    
+    return buffer.toSource();
+}
+
+function getDocumentSource() {
+    var docRef = activeDocument
+    var filepath = activeDocument.path.toString() + "/" + docRef.name
+    
+    return readBinaryFile(filepath)
+}
+
+function getTempPath() {
+    return Folder.temp.toString()
+}
+
+function replaceImage(path) {
+    var file = File(path)
+    var current = app.activeDocument
+
+    app.load(file)
+
+    var backFile = app.activeDocument;
+    backFile.resizeImage(current.width.value, current.height.value, current.resolution)
+    backFile.selection.selectAll();
+    backFile.selection.copy()
+    backFile.close(SaveOptions.DONOTSAVECHANGES)
+
+    file.remove()
+
+    current.layers[0].isBackgroundLayer = false
+    pasteInPlace()
+    current.layers[0].name = "Person"
+    current.layers[1].remove()
+
+    var backgroundLayer = current.artLayers.add()
+    backgroundLayer.name = "Background"
+    backgroundLayer.isBackgroundLayer = true
+    backgroundLayer.move(current.layers[1], ElementPlacement.PLACEAFTER)
+
+    current.activeLayer = current.layers[0]
+}
+
+function pasteInPlace() {
+    var idpast = charIDToTypeID( "past" );
+    var desc557 = new ActionDescriptor();
+    var idinPlace = stringIDToTypeID( "inPlace" );
+    desc557.putBoolean( idinPlace, true );
+    var idAntA = charIDToTypeID( "AntA" );
+    var idAnnt = charIDToTypeID( "Annt" );
+    var idAnno = charIDToTypeID( "Anno" );
+    desc557.putEnumerated( idAntA, idAnnt, idAnno );
+    executeAction( idpast, desc557, DialogModes.NO );
+  };
