@@ -57,7 +57,11 @@ body
   justify-content: center
 
   & > *
+    display: flex
+    flex-direction: column
+    justify-content: space-between
     width: 350px
+    height: 404px
     padding: 20px 30px
     position: relative
     color: #fff

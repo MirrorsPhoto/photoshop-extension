@@ -1,45 +1,68 @@
 <template>
   <div>
-    <dropdown
-      label="Размер"
-      v-model="size"
-      :options="sizes"
-    ></dropdown>
 
-    <dropdown
-      label="Кол-во фото"
-      v-model="count"
-      :options="counts"
-    ></dropdown>
-
-    <div class="options">
-      <checkbox
-        label="Рамка"
-        v-model="options.isBorder"
-      />
-      <checkbox
-        label="Логотип"
-        v-model="options.isLogo"
-      />
-      <checkbox
-        label="Дата"
-        v-model="options.isDate"
-      />
+    <div class="tabs">
+      <div
+        class="tabs__item"
+        :class="{ active: tab === 'print' }"
+        @click="tab = 'print'"
+      >Печать</div>
+      <div
+        class="tabs__item"
+        :class="{ active: tab === 'actions' }"
+        @click="tab = 'actions'"
+      >Действия</div>
     </div>
 
-    <button
-      class="render-btn"
-      @click="render"
-    >Применить</button>
+    <div v-if="tab === 'print'" key="print">
 
-    <button
-      class="render-btn"
-      @click="removeBackground"
-    >Убрать фон</button>
+      <div class="sizes-wrap">
+        <dropdown
+          width="47%"
+          label="Размер"
+          v-model="size"
+          :options="sizes"
+        ></dropdown>
 
-    <p>
-      <span v-for="message in errorMessages" :key="message">{{ message }}<br></span>
-    </p>
+        <dropdown
+          width="47%"
+          label="Кол-во фото"
+          v-model="count"
+          :options="counts"
+        ></dropdown>
+      </div>
+
+      <div class="options">
+        <checkbox
+          label="Рамка"
+          v-model="options.isBorder"
+        />
+        <checkbox
+          label="Логотип"
+          v-model="options.isLogo"
+        />
+        <checkbox
+          label="Дата"
+          v-model="options.isDate"
+        />
+      </div>
+
+      <button
+        class="render-btn"
+        @click="render"
+      >Применить</button>
+
+      <p>
+        <span v-for="message in errorMessages" :key="message">{{ message }}<br></span>
+      </p>
+    </div>
+
+    <div v-if="tab === 'actions'" key="actions">
+      <button
+        class="render-btn"
+        @click="removeBackground"
+      >Убрать фон</button>
+    </div>
 
     <a
       href="#"
@@ -52,12 +75,13 @@
 import Axios from 'axios'
 
 export default {
-  components: { 
+  components: {
     dropdown: () => import('../UI/dropdown.vue'),
-    checkbox: () => import('../UI/checkbox.vue') 
+    checkbox: () => import('../UI/checkbox.vue')
   },
   data() {
     return {
+      tab: 'print',
       options: {
         isBorder: true,
         isLogo: true,
@@ -254,9 +278,9 @@ export default {
         .then(({ data }) => {
             new CSInterface().evalScript(`getTempPath()`, tempPath => {
               let path = `${tempPath}/${Date.now()}.png`
-              
+
               window.cep.fs.writeFile(path, data.data.result_b64, cep.encoding.Base64)
-              
+
               new CSInterface().evalScript(`replaceImage('${path}')`)
             })
         })
@@ -294,11 +318,31 @@ export default {
   text-align: center
   text-decoration: none
   color: $hard
+  margin-top: 0
 
   &:hover
     color: $primary-color
 
 .options
   margin-bottom: 30px
+
+
+.tabs
+  display: flex
+  border-bottom: 2px solid $primary-color
+  margin-bottom: 15px
+
+  &__item
+    padding: 10px 15px
+    cursor: pointer
+    &.active
+      background-color: $primary-color
+      color: white
+    &:hover:not(.active)
+      color: $primary-color
+
+.sizes-wrap
+  display: flex
+  justify-content: space-between
 
 </style>
