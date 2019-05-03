@@ -430,7 +430,7 @@ function open(path) {
     app.open( fileRef)
 }
 
-function render(width, height, count, isBorder, isLogo, isDate) {
+function render(width, height, count, isBorder, isLogo, isDate, isMate) {
     isAddDate = isDate
     try {
         var activeDocument = app.activeDocument;
@@ -465,6 +465,10 @@ function render(width, height, count, isBorder, isLogo, isDate) {
 
     //Изменить размер холста
     activeDocument.resizeCanvas(layerWidth, layerHeight)
+
+    if (isMate) {
+        border = 0.3
+    }
 
     eval('render' + String(width).replace ('.', '') + 'x' + String(height).replace ('.', '') + 'x' + count + '(' + width + ', ' + height + ')');
 
