@@ -123,7 +123,7 @@ function addLogo() {
     desc133.putObject( idPtrn, idPtrn, desc134 );
     var idScl = charIDToTypeID( "Scl " );
     var idPrc = charIDToTypeID( "#Prc" );
-    desc133.putUnitDouble( idScl, idPrc, 60.000000 );
+    desc133.putUnitDouble( idScl, idPrc, 25.000000 );
     var idAlgn = charIDToTypeID( "Algn" );
     desc133.putBoolean( idAlgn, true );
     var idphase = stringIDToTypeID( "phase" );
