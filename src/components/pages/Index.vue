@@ -25,6 +25,10 @@
         label="Дата"
         v-model="options.isDate"
       />
+      <checkbox
+        label="Матовая"
+        v-model="options.isMate"
+      />
     </div>
 
     <button
@@ -32,10 +36,10 @@
       @click="render"
     >Применить</button>
 
-    <button
+    <!-- <button
       class="render-btn"
       @click="removeBackground"
-    >Убрать фон</button>
+    >Убрать фон</button> -->
 
     <p>
       <span v-for="message in errorMessages" :key="message">{{ message }}<br></span>
@@ -61,7 +65,8 @@ export default {
       options: {
         isBorder: true,
         isLogo: true,
-        isDate: true
+        isDate: true,
+        isMate: false
       },
       photoData: [
         {
@@ -220,8 +225,8 @@ export default {
 
       const [width, height] = this.size.split('x').map(Number)
       const count = Number(this.count)
-      const { isBorder, isLogo, isDate, isRemoveBackground } = this.options
-      const argsStr = [width, height, count, isBorder, isLogo, isDate].join(', ')
+      const { isBorder, isLogo, isDate, isRemoveBackground, isMate } = this.options
+      const argsStr = [width, height, count, isBorder, isLogo, isDate, isMate].join(', ')
 
       new CSInterface().evalScript(`render(${argsStr})`, result => {
         if (result !== 'false') {
