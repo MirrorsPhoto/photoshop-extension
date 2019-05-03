@@ -356,7 +356,7 @@ function render36x46x4(width, height)
 
     newLayer.translate(-(height + offset) - 0.4)
 
-    addDatetime(border + height + offset + height + offset, border + 0.36, 'right')
+    addDatetime(border, border + width + offset + width + 0.25 + offset)
 }
 
 
