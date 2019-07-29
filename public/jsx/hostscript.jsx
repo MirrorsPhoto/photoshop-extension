@@ -1,8 +1,7 @@
 
 var layerWidth = 10,
-    layerHeight = 15,
+    layerHeight = 21,
     offset = 0.1,
-    border = 0.2,
     isAddDate = true
 
 function isCrop(width, height) {
@@ -139,6 +138,43 @@ function addLogo() {
     var idLefx = charIDToTypeID( "Lefx" );
     desc131.putObject( idT, idLefx, desc132 );
     executeAction( idsetd, desc131, DialogModes.NO );
+}
+
+function addLine() {
+	var idMk = charIDToTypeID( "Mk  " );
+	var desc228 = new ActionDescriptor();
+	var idNw = charIDToTypeID( "Nw  " );
+	var desc229 = new ActionDescriptor();
+	var idPstn = charIDToTypeID( "Pstn" );
+	var idRlt = charIDToTypeID( "#Rlt" );
+	desc229.putUnitDouble( idPstn, idRlt, 425.060792 );
+	var idOrnt = charIDToTypeID( "Ornt" );
+	var idOrnt = charIDToTypeID( "Ornt" );
+	var idHrzn = charIDToTypeID( "Hrzn" );
+	desc229.putEnumerated( idOrnt, idOrnt, idHrzn );
+	var idKnd = charIDToTypeID( "Knd " );
+	var idKnd = charIDToTypeID( "Knd " );
+	var idDcmn = charIDToTypeID( "Dcmn" );
+	desc229.putEnumerated( idKnd, idKnd, idDcmn );
+	var idnull = charIDToTypeID( "null" );
+	var ref56 = new ActionReference();
+	var idDcmn = charIDToTypeID( "Dcmn" );
+	ref56.putIdentifier( idDcmn, 196 );
+	var idGd = charIDToTypeID( "Gd  " );
+	ref56.putIndex( idGd, 1 );
+	desc229.putReference( idnull, ref56 );
+	var idGd = charIDToTypeID( "Gd  " );
+	desc228.putObject( idNw, idGd, desc229 );
+	var idnull = charIDToTypeID( "null" );
+	var ref57 = new ActionReference();
+	var idGd = charIDToTypeID( "Gd  " );
+	ref57.putClass( idGd );
+	desc228.putReference( idnull, ref57 );
+	var idguideTarget = stringIDToTypeID( "guideTarget" );
+	var idguideTarget = stringIDToTypeID( "guideTarget" );
+	var idguideTargetCanvas = stringIDToTypeID( "guideTargetCanvas" );
+	desc228.putEnumerated( idguideTarget, idguideTarget, idguideTargetCanvas );
+	executeAction( idMk, desc228, DialogModes.NO );
 }
 
 function addDatetime(width, height, position) {
@@ -537,7 +573,8 @@ function open(path) {
 }
 
 function render(width, height, count, isBorder, isLogo, isDate, isMate) {
-    isAddDate = isDate
+    isAddDate = isDate;
+    border = isMate ? 0.3 : 0.2;
     try {
         var activeDocument = app.activeDocument;
     } catch (e) {
@@ -572,9 +609,7 @@ function render(width, height, count, isBorder, isLogo, isDate, isMate) {
     //Изменить размер холста
     activeDocument.resizeCanvas(layerWidth, layerHeight)
 
-    if (isMate) {
-        border = 0.3
-    }
+    addLine();
 
     eval('render' + String(width).replace ('.', '') + 'x' + String(height).replace ('.', '') + 'x' + count + '(' + width + ', ' + height + ')');
 
@@ -589,7 +624,7 @@ function render(width, height, count, isBorder, isLogo, isDate, isMate) {
         }
       }
     }
-    
+
 
     app.activeDocument.activeLayer.isBackgroundLayer = false
     app.activeDocument.activeLayer.name = 'Фон'
@@ -610,14 +645,14 @@ function readBinaryFile(path) {
 
     var buffer = file.read()
     file.close()
-    
+
     return buffer.toSource();
 }
 
 function getDocumentSource() {
     var docRef = activeDocument
     var filepath = activeDocument.path.toString() + "/" + docRef.name
-    
+
     return readBinaryFile(filepath)
 }
 
