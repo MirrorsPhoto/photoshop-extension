@@ -393,52 +393,54 @@ function render35x45x8(width, height)
 function render36x46x8(width, height)
 {
     var layer = activeDocument.activeLayer;
+    var localHorBorder = 0.9
+    var localVerBorder = 0.5
+    var localHorOffset = 0.5
+    var localVerOffset = 0.4
 
-    layer.rotate(90);
-
-    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+    layer.translate((-(layerWidth - width) / 2) + localHorBorder, (-(layerHeight - height) / 2) + localVerBorder)
 
     var newLayer = layer.duplicate();
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(height + offset)
+    newLayer.translate(height + localHorOffset * 2)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 3';
 
-    newLayer.translate(0, width + offset)
+    newLayer.translate(0, width + localVerOffset)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 4';
 
-    newLayer.translate(-(height + offset))
+    newLayer.translate(-(height + localHorOffset * 2))
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 5';
 
-    newLayer.translate(0, width + offset)
+    newLayer.translate(0, width + localVerOffset * 2)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 6';
 
-    newLayer.translate(height + offset)
+    newLayer.translate(height + localHorOffset * 2)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 7';
 
-    newLayer.translate(0, width + offset)
+    newLayer.translate(0, width + localVerOffset)
 
     newLayer = newLayer.duplicate();
 
     newLayer.name = 'Фото 8';
 
-    newLayer.translate(-(height + offset))
+    newLayer.translate(-(height + localHorOffset * 2))
 
     addDatetime(border + height + offset + height + offset, border + 0.36, 'right')
 }
@@ -478,13 +480,13 @@ function render36x46x4(width, height)
 
     layer.rotate(90);
 
-    layer.translate((-(layerWidth - height) / 2) + border, (-(layerHeight - width) / 2) + border)
+    layer.translate((-(layerWidth - height) / 2) + border - 0.1, (-(layerHeight - width) / 2) + border)
 
     var newLayer = layer.duplicate();
 
     newLayer.name = 'Фото 2';
 
-    newLayer.translate(height + offset + 0.4)
+    newLayer.translate(height + offset + 0.3)
 
     newLayer = newLayer.duplicate();
 
@@ -496,7 +498,7 @@ function render36x46x4(width, height)
 
     newLayer.name = 'Фото 4';
 
-    newLayer.translate(-(height + offset) - 0.4)
+    newLayer.translate(-(height + offset) - 0.3)
 
     addDatetime(border, border + width + offset + width + 0.25 + offset)
 }
@@ -574,7 +576,7 @@ function open(path) {
 
 function render(width, height, count, isBorder, isLogo, isDate, isMate) {
     isAddDate = isDate;
-    border = isMate ? 0.3 : 0.2;
+    border = isMate ? 0.4 : 0.3;
     try {
         var activeDocument = app.activeDocument;
     } catch (e) {
