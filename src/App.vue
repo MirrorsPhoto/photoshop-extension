@@ -33,7 +33,9 @@ export default {
   },
 
   created() {
-    this.page = localStorage.getItem('token') ? 'index' : 'auth';
+    //this.page = localStorage.getItem('token') ? 'index' : 'auth';
+    //Force index page
+    this.page = 'index';
   }
 }
 </script>
